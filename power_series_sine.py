@@ -19,6 +19,9 @@ x = np.linspace(x_min, x_max, no_of_points)
 # closed form of the function
 sinx_closed_form = np.sin(x)
 
+error_vs_no_of_terms = np.zeros(no_of_terms_in_series_max)
+arr = np.zeros(no_of_terms_in_series_max)
+
 # iteration over the no of terms in the series
 for no_of_terms_in_series in range(no_of_terms_in_series_max):
 
@@ -33,6 +36,9 @@ for no_of_terms_in_series in range(no_of_terms_in_series_max):
    error = sinx_closed_form - sinx_series
    l2_error = np.sum(error**2)
    print('l2 norm of error in the series trucated after ', no_of_terms_in_series, ' terms = ', l2_error)
+
+   arr[no_of_terms_in_series-1] = no_of_terms_in_series
+   error_vs_no_of_terms[no_of_terms_in_series-1] = l2_error
 
 '''
    # visualizing the sine function, trucated series and error
@@ -50,3 +56,10 @@ for no_of_terms_in_series in range(no_of_terms_in_series_max):
    # uncomment below to visualize graphs
    plt.show()
 '''
+
+# l2 norm of error plotted versus no of terms in sine series
+plt.figure(figsize=(10, 8))
+plt.semilogy(arr, error_vs_no_of_terms, '*')
+plt.xlabel('No of terms in the power series of sine function')
+plt.ylabel('L2 norm of the error')
+plt.show()
