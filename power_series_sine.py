@@ -34,7 +34,7 @@ for no_of_terms_in_series in range(no_of_terms_in_series_max):
 
    # l2 norm of the error in function
    error = sinx_closed_form - sinx_series
-   l2_error = np.sum(error**2)
+   l2_error = np.sqrt(np.sum(error**2))
    print('l2 norm of error in the series trucated after ', no_of_terms_in_series, ' terms = ', l2_error)
 
    arr[no_of_terms_in_series-1] = no_of_terms_in_series
